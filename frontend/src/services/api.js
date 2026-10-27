@@ -58,12 +58,12 @@ export async function uploadCertificateToIpfs(file, studentRegNo) {
       60000,
     );
   } catch {
-    throw new Error('The backend is not reachable.');
+    throw new Error('The server is not reachable.');
   }
 
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.error || `The backend returned error ${response.status}.`);
-  if (!data.ipfsCID) throw new Error('The backend did not return an IPFS CID.');
+  if (!response.ok) throw new Error(data.error || `The server returned error ${response.status}.`);
+  if (!data.ipfsCID) throw new Error('The server did not return an IPFS CID.');
 
   return { cid: data.ipfsCID, hash: data.sha256Fingerprint };
 }

@@ -7,7 +7,7 @@
  */
 export function buildQrPayload(record) {
   return [
-    'CertVerify prototype certificate',
+    'CertVerify certificate',
     `Certificate ID: ${record.certificateId}`,
     `Name: ${record.studentName}`,
     `Student ID: ${record.studentId}`,
@@ -16,6 +16,5 @@ export function buildQrPayload(record) {
     `Issuer: ${record.institutionName}`,
     `PDF SHA-256: ${record.fileHash || 'not available'}`,
     `IPFS CID: ${record.ipfsCID || 'not uploaded'}`,
-    'Status: not yet on blockchain',
   ].join('\n');
 }

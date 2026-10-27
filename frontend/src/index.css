@@ -9,32 +9,36 @@
 
 /* ---------- 1. Theme ---------- */
 :root {
-  --ink: #070b1a;          /* page background */
-  --rail: #0a1026;         /* sidebar */
-  --panel: #0d1331;        /* cards */
-  --panel-raised: #131b40; /* inputs, hover */
-  --line: #1f2952;         /* borders */
-  --text: #e8ecff;
-  --muted: #97a1c8;
-  --cyan: #22d3ee;
-  --violet: #a78bfa;
-  --mint: #5eead4;
-  --danger: #f87171;
-  --success: #4ade80;
-  --warning: #fcd34d;
-  --paper: #f7f8fd;        /* the certificate slip */
+  /* Light, standard theme. Variable names are kept from the first version so every
+     component uses them: --ink = page background and text on coloured buttons,
+     --cyan = the main brand blue, --violet = secondary, --mint = success. */
+  --ink: #f3f5f8;          /* page background */
+  --rail: #ffffff;         /* sidebar */
+  --panel: #ffffff;        /* cards */
+  --panel-raised: #f1f4f8; /* hover, selected, table header */
+  --line: #dfe4ea;         /* borders */
+  --text: #1c2430;
+  --muted: #5d6877;
+  --cyan: #1d4ed8;         /* primary blue */
+  --violet: #475569;       /* secondary (slate) */
+  --mint: #15803d;         /* success green */
+  --danger: #b91c1c;
+  --success: #15803d;
+  --warning: #b45309;
+  --tint: #eaf0fb;         /* light blue background for highlights */
+  --paper: #fffdf8;        /* the certificate "paper" */
   --paper-ink: #111a3a;
 
-  /* Sans-serif for the interface; serif only for the certificate "paper". */
-  --font-body: 'Lato', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-document: 'Lora', Georgia, 'Times New Roman', serif;
   --font-code: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
 
-  --radius-sm: 6px;
-  --radius: 10px;
-  --radius-lg: 14px;
-  --sidebar-width: 248px;
-  color-scheme: dark;
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 8px;
+  --sidebar-width: 240px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+  color-scheme: light;
 }
 
 /* ---------- 2. Base ---------- */
@@ -124,9 +128,7 @@ iframe {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background:
-    radial-gradient(800px 480px at 90% -10%, rgba(34, 211, 238, 0.1), transparent 60%),
-    var(--ink);
+  background: var(--ink);
 }
 
 .public-header {
@@ -324,7 +326,7 @@ iframe {
 .app-content {
   flex: 1;
   width: 100%;
-  max-width: 1180px;
+  max-width: none; /* dashboards use the full screen width */
   padding: 28px 32px 48px;
 }
 
@@ -384,11 +386,11 @@ iframe {
 
 .btn-primary {
   background: var(--cyan);
-  color: var(--ink);
+  color: #ffffff;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #67e8f9;
+  background: #1e40af;
 }
 
 .btn-secondary {
@@ -517,13 +519,13 @@ iframe {
 }
 
 .input::placeholder {
-  color: #5d678f;
+  color: #98a2b3;
 }
 
 .input:focus {
   outline: none;
   border-color: var(--cyan);
-  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
 }
 
 select.input {
@@ -565,7 +567,7 @@ select.input {
 .dropzone:hover,
 .dropzone.dragging {
   border-color: var(--cyan);
-  background: rgba(34, 211, 238, 0.05);
+  background: var(--tint);
 }
 
 .dropzone.has-error {
@@ -583,7 +585,7 @@ select.input {
   padding: 12px 14px;
   border-radius: var(--radius);
   border: 1px solid var(--mint);
-  background: rgba(94, 234, 212, 0.06);
+  background: #f0fdf4;
   color: var(--mint);
 }
 
@@ -751,8 +753,8 @@ select.input {
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--warning);
-  background: rgba(252, 211, 77, 0.1);
-  border: 1px solid rgba(252, 211, 77, 0.35);
+  background: #fffbeb;
+  border: 1px solid #f5d29a;
 }
 
 /* ---------- 9. Certificate slip (the paper card with the QR) ---------- */
@@ -777,7 +779,7 @@ select.input {
     inset 0 0 0 1px rgba(14, 116, 144, 0.55),
     inset 0 0 0 5px var(--paper),
     inset 0 0 0 6px rgba(14, 116, 144, 0.3),
-    0 24px 50px -24px rgba(0, 0, 0, 0.9);
+    0 24px 50px -24px rgba(16, 24, 40, 0.12);
 }
 
 .slip-highlight .slip-paper {
@@ -957,7 +959,7 @@ select.input {
 }
 
 .cert-table tbody tr:hover {
-  background: rgba(19, 27, 64, 0.6);
+  background: #f8fafc;
 }
 
 .cert-table td .code {
@@ -983,7 +985,7 @@ select.input {
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: rgba(3, 6, 18, 0.78);
+  background: rgba(15, 23, 42, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -999,7 +1001,7 @@ select.input {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 30px 80px -20px rgba(16, 24, 40, 0.12);
   outline: none;
   animation: rise-in 0.18s ease-out;
 }
@@ -1066,7 +1068,7 @@ select.input {
   height: min(68vh, 560px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #2a2f45;
+  background: #e5e7eb;
 }
 
 .pdf-frame-state {
@@ -1223,7 +1225,7 @@ select.input {
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
   background: var(--panel);
-  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 24px 60px -30px rgba(16, 24, 40, 0.12);
 }
 
 .login-title {
@@ -1285,9 +1287,9 @@ select.input {
 .form-alert {
   padding: 10px 14px;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(248, 113, 113, 0.5);
-  background: rgba(248, 113, 113, 0.08);
-  color: #fecaca;
+  border: 1px solid #f3b4b4;
+  background: #fef2f2;
+  color: #991b1b;
   font-size: 0.9rem;
 }
 
@@ -2073,7 +2075,7 @@ select.input {
 
 .backend-online {
   color: var(--mint);
-  border-color: rgba(94, 234, 212, 0.4);
+  border-color: rgba(21, 128, 61, 0.35);
 }
 
 .backend-online .backend-dot {
@@ -2082,7 +2084,7 @@ select.input {
 
 .backend-offline {
   color: var(--warning);
-  border-color: rgba(252, 211, 77, 0.4);
+  border-color: #f5d29a;
 }
 
 .backend-offline .backend-dot {
@@ -2097,7 +2099,7 @@ select.input {
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--mint);
-  border: 1px solid rgba(94, 234, 212, 0.45);
+  border: 1px solid rgba(21, 128, 61, 0.35);
   vertical-align: middle;
 }
 
@@ -2122,4 +2124,286 @@ select.input {
 
 .toast-warning > svg {
   color: var(--warning);
+}
+
+/* ---------- 18. Standard light look ---------- */
+.public-header {
+  background: var(--panel);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.input,
+.search-box {
+  background: #ffffff;
+}
+
+.input:hover,
+.search-box:hover {
+  border-color: #c5ccd6;
+}
+
+.panel,
+.stat-card,
+.login-card,
+.audience-card,
+.workflow-step {
+  box-shadow: var(--shadow);
+}
+
+.login-card {
+  box-shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
+}
+
+.modal {
+  box-shadow: 0 20px 48px rgba(16, 24, 40, 0.18);
+}
+
+.toast {
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12);
+}
+
+/* Table: grey header row like a standard admin table */
+.cert-table th {
+  background: var(--panel-raised);
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.cert-table th:first-child {
+  border-top-left-radius: var(--radius-sm);
+}
+
+.cert-table th:last-child {
+  border-top-right-radius: var(--radius-sm);
+}
+
+.cert-table td .code {
+  color: var(--cyan);
+}
+
+/* Sidebar */
+.side-link.active {
+  background: var(--tint);
+  color: var(--cyan);
+}
+
+.side-link:hover {
+  background: var(--panel-raised);
+}
+
+/* Stat icons: light tinted squares instead of bright blocks */
+.stat-icon.tone-cyan {
+  background: var(--tint);
+  color: var(--cyan);
+}
+
+.stat-icon.tone-violet {
+  background: #eef0f3;
+  color: var(--violet);
+}
+
+.stat-icon.tone-mint {
+  background: #e8f5ec;
+  color: var(--mint);
+}
+
+/* Avatars */
+.avatar-sm.role-admin,
+.avatar-hex {
+  background: var(--tint);
+  color: var(--cyan);
+}
+
+.avatar-sm.role-student {
+  background: #eef0f3;
+  color: var(--violet);
+}
+
+/* Login role switch */
+.role-switch {
+  background: var(--panel-raised);
+}
+
+.role-option.active {
+  background: #ffffff;
+  color: var(--cyan);
+  box-shadow: 0 0 0 1px var(--line), var(--shadow);
+}
+
+.demo-account {
+  background: var(--panel-raised);
+}
+
+/* Certificate "paper" on white panels needs a visible edge */
+.slip-paper {
+  box-shadow:
+    inset 0 0 0 1px rgba(14, 116, 144, 0.45),
+    inset 0 0 0 5px var(--paper),
+    inset 0 0 0 6px rgba(14, 116, 144, 0.25),
+    0 0 0 1px var(--line),
+    0 4px 14px rgba(16, 24, 40, 0.08);
+}
+
+.slip-highlight .slip-paper {
+  outline-color: var(--cyan);
+}
+
+.chip:hover {
+  border-color: var(--cyan);
+}
+
+.form-alert {
+  color: #991b1b;
+}
+
+.status-pill {
+  color: var(--warning);
+}
+
+/* ---------- 19. About page (simple) ---------- */
+.about {
+  max-width: 760px;
+  gap: 36px;
+}
+
+.about-lede {
+  color: var(--muted);
+  font-size: 1.08rem;
+  margin-top: 10px;
+  max-width: 64ch;
+}
+
+.about-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+}
+
+.about-section h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.about-section p,
+.about-text {
+  color: var(--muted);
+}
+
+.about-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.about-steps li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.about-step-number {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--tint);
+  color: var(--cyan);
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.about-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+@media (max-width: 600px) {
+  .about-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.status-pill.status-ok {
+  color: var(--mint);
+  background: #f0fdf4;
+  border-color: rgba(21, 128, 61, 0.35);
+}
+
+.footer p {
+  margin: 0 auto;
+}
+
+.footer-compact p {
+  margin: 0;
+}
+
+/* ---------- 20. Server warning on the Issue page ---------- */
+.server-warning {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid #f5d29a;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.server-warning > svg {
+  flex-shrink: 0;
+  color: var(--warning);
+}
+
+.server-warning p {
+  flex: 1;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .server-warning {
+    flex-wrap: wrap;
+  }
+}
+
+/* ---------- 21. Issue page: form alone, then a confirmation ---------- */
+.issue-single {
+  width: 100%; /* the form uses the full width of the page */
+}
+
+.issued-panel {
+  border-color: rgba(21, 128, 61, 0.35);
+}
+
+.issued-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  color: var(--mint);
+  margin-bottom: 4px;
+}
+
+.issued-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.issue-another {
+  margin-top: 12px;
+  width: 100%;
 }

@@ -92,7 +92,7 @@ export default function CertificateForm({ onIssued }) {
         showToast(`Certificate ${record.certificateId} issued and stored on IPFS.`);
       } else {
         showToast(
-          `Certificate ${record.certificateId} issued, but saved in this browser only. ${backendError}`,
+          `Certificate ${record.certificateId} issued, but saved on this device only. ${backendError}`,
           'warning',
         );
       }

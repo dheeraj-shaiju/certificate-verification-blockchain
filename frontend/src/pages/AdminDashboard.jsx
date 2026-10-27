@@ -120,10 +120,7 @@ export default function AdminDashboard() {
             <div>
               <h3 className="qr-modal-heading">What the QR contains</h3>
               <pre className="qr-payload">{buildQrPayload(qrRecord)}</pre>
-              <p className="field-hint">
-                Scan it with any phone camera to read these details. In the next phase the QR will
-                hold a verification link that is checked against the blockchain.
-              </p>
+              <p className="field-hint">Scan it with any phone camera to read these details.</p>
             </div>
           </div>
         </Modal>

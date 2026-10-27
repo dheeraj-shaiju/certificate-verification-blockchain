@@ -1,6 +1,6 @@
 # CertVerify – Certificate Verification System Using Blockchain
 
-Phase I **frontend prototype**, version 0.7 (connected to the IPFS backend) (CSD415, Project Group 6, GEC Thrissur).
+Phase I **frontend prototype**, version 0.9 (standard design, connected to the IPFS backend) (CSD415, Project Group 6, GEC Thrissur).
 
 A common platform for any college. Each college’s admin issues degree
 certificates (details + PDF) in that college’s name, and students view them,

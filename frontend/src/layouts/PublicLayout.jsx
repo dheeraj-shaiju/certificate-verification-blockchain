@@ -27,7 +27,7 @@ export default function PublicLayout() {
               to="/about"
               className={({ isActive }) => (isActive ? 'top-link active' : 'top-link')}
             >
-              About the project
+              About
             </NavLink>
             {user && (
               <Link to={homePathFor(user)} className="btn btn-small btn-primary">

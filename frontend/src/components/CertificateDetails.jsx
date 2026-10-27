@@ -73,7 +73,9 @@ export default function CertificateDetails({ record }) {
       <div className="details-wide">
         <dt>Status</dt>
         <dd>
-          <span className="status-pill">{record.status}</span>
+          <span className={record.ipfsCID ? 'status-pill status-ok' : 'status-pill'}>
+            {record.ipfsCID ? 'Stored on IPFS' : 'Saved in this browser'}
+          </span>
         </dd>
       </div>
     </dl>

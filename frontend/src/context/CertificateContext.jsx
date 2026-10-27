@@ -93,7 +93,7 @@ export function CertificateProvider({ children }) {
       const result = await uploadCertificateToIpfs(file, values.studentId);
       // Both sides hashed the same file, so the fingerprints must match.
       if (fileHash && result.hash && result.hash !== fileHash) {
-        throw new Error('The fingerprint from the backend does not match this PDF.');
+        throw new Error('The fingerprint from the server does not match this PDF.');
       }
       ipfsCID = result.cid;
     } catch (error) {

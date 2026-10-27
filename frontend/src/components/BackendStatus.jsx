@@ -1,28 +1,20 @@
-// Small badge on the Issue page showing whether PDFs will go to IPFS.
-import { RefreshCw } from 'lucide-react';
-
-const TEXT = {
-  checking: 'Checking backend…',
-  online: 'Backend connected: PDFs are stored on IPFS',
-  offline: 'Backend offline: PDFs are saved in this browser',
-};
+/**
+ * Shows a warning above the issue form only when the server can't be reached.
+ * When the server is working (or still being checked), nothing is shown.
+ */
+import { AlertTriangle, RefreshCw } from 'lucide-react';
 
 export default function BackendStatus({ status, onRetry }) {
+  if (status !== 'offline') return null;
+
   return (
-    <div className={`backend-status backend-${status}`} role="status">
-      <span className="backend-dot" aria-hidden="true" />
-      <span>{TEXT[status]}</span>
-      {status === 'offline' && (
-        <button
-          type="button"
-          className="icon-btn icon-btn-small"
-          onClick={onRetry}
-          aria-label="Check the backend again"
-          title="Check again"
-        >
-          <RefreshCw size={14} />
-        </button>
-      )}
+    <div className="server-warning" role="alert">
+      <AlertTriangle size={18} aria-hidden="true" />
+      <p>Can’t reach the server. Certificates will be saved on this device only until it’s back.</p>
+      <button type="button" className="btn btn-small btn-secondary" onClick={onRetry}>
+        <RefreshCw size={14} aria-hidden="true" />
+        Try again
+      </button>
     </div>
   );
 }
