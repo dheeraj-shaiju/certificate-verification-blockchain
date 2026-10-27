@@ -83,8 +83,19 @@ export default function CertificateForm({ onIssued }) {
 
     setIsSubmitting(true);
     try {
-      const record = await addCertificate(cleaned, file, user.institutionId);
-      showToast(`Certificate ${record.certificateId} issued to ${record.studentName}.`);
+      const { record, uploadedToIpfs, backendError } = await addCertificate(
+        cleaned,
+        file,
+        user.institutionId,
+      );
+      if (uploadedToIpfs) {
+        showToast(`Certificate ${record.certificateId} issued and stored on IPFS.`);
+      } else {
+        showToast(
+          `Certificate ${record.certificateId} issued, but saved in this browser only. ${backendError}`,
+          'warning',
+        );
+      }
       setValues(EMPTY_FORM);
       setFile(null);
       setErrors({});

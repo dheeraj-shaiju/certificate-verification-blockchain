@@ -13,10 +13,13 @@ import CertificateSlip from '../components/CertificateSlip';
 import CertificateViewer from '../components/CertificateViewer';
 import Spinner from '../components/Spinner';
 import EmptyState from '../components/EmptyState';
+import BackendStatus from '../components/BackendStatus';
+import { useBackendStatus } from '../hooks/useBackendStatus';
 
 export default function IssueCertificatePage() {
   const { records, isLoading } = useCertificates();
   const { user } = useAuth();
+  const backend = useBackendStatus();
   const [justIssuedId, setJustIssuedId] = useState(null);
   const [viewingRecord, setViewingRecord] = useState(null);
 
@@ -36,12 +39,18 @@ export default function IssueCertificatePage() {
       <PageHeader
         title="Issue a certificate"
         description={`Issued in the name of ${user.institutionName}. The certificate ID and QR code are created automatically.`}
+        actions={<BackendStatus status={backend.status} onRetry={backend.check} />}
       />
 
       <div className="issue-grid">
         <section className="panel">
           <h2 className="panel-title">Student and certificate details</h2>
-          <CertificateForm onIssued={(record) => setJustIssuedId(record.certificateId)} />
+          <CertificateForm
+            onIssued={(record) => {
+              setJustIssuedId(record.certificateId);
+              backend.check(); // refresh the badge in case the backend stopped or started
+            }}
+          />
         </section>
 
         <section className="panel panel-quiet">

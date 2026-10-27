@@ -14,8 +14,8 @@ const WORKFLOW = [
   },
   {
     title: 'IPFS storage',
-    status: 'simulated',
-    text: 'The PDF is kept in this browser (IndexedDB). Pinata IPFS comes next.',
+    status: 'working',
+    text: 'The backend uploads each PDF to IPFS through Pinata and returns its CID. If the backend is off, the PDF stays in the browser.',
   },
   {
     title: 'Smart contract mint',

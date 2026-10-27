@@ -19,7 +19,13 @@ import {
 import { createSampleData } from '../services/sampleData';
 import { generateCertificateId } from '../utils/certificateId';
 import { sha256Hex } from '../utils/fileHelpers';
-import { PROTOTYPE_STATUS, DEFAULT_INSTITUTION_ID, getInstitution } from '../utils/constants';
+import {
+  PROTOTYPE_STATUS,
+  IPFS_STATUS,
+  DEFAULT_INSTITUTION_ID,
+  getInstitution,
+} from '../utils/constants';
+import { uploadCertificateToIpfs } from '../services/api';
 
 const CertificateContext = createContext(null);
 
@@ -64,7 +70,14 @@ export function CertificateProvider({ children }) {
     if (!isLoading) saveRecords(records);
   }, [records, isLoading]);
 
-  // Issue a new certificate for the admin's college: create an ID, fingerprint the PDF, store it.
+  /**
+   * Issue a new certificate for the admin's college.
+   * 1. create a certificate ID and a SHA-256 fingerprint of the PDF
+   * 2. send the PDF to the backend, which stores it on IPFS and returns its CID
+   *    (if the backend is not running, the certificate is still issued, browser-only)
+   * 3. keep a copy of the PDF in the browser so it can be viewed quickly and offline
+   * Returns { record, uploadedToIpfs, backendError }.
+   */
   async function addCertificate(values, file, institutionId) {
     const institution = getInstitution(institutionId);
     const existingIds = new Set(records.map((r) => r.certificateId));
@@ -73,6 +86,20 @@ export function CertificateProvider({ children }) {
 
     const pdfBlob = new Blob([file], { type: 'application/pdf' });
     const fileHash = await sha256Hex(pdfBlob);
+
+    let ipfsCID = null;
+    let backendError = '';
+    try {
+      const result = await uploadCertificateToIpfs(file, values.studentId);
+      // Both sides hashed the same file, so the fingerprints must match.
+      if (fileHash && result.hash && result.hash !== fileHash) {
+        throw new Error('The fingerprint from the backend does not match this PDF.');
+      }
+      ipfsCID = result.cid;
+    } catch (error) {
+      backendError = error.message;
+    }
+
     await savePdf(certificateId, pdfBlob);
 
     const newRecord = {
@@ -86,13 +113,14 @@ export function CertificateProvider({ children }) {
       fileName: file.name,
       fileSize: file.size,
       fileHash,
+      ipfsCID, // null when the backend was not reachable
       issuedAt: new Date().toISOString(),
-      status: PROTOTYPE_STATUS,
+      status: ipfsCID ? IPFS_STATUS : PROTOTYPE_STATUS,
       isSample: false,
     };
 
     setRecords((current) => [newRecord, ...current]);
-    return newRecord;
+    return { record: newRecord, uploadedToIpfs: Boolean(ipfsCID), backendError };
   }
 
   async function deleteCertificate(certificateId) {

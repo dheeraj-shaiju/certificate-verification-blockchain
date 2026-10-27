@@ -54,7 +54,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="sidebar-foot">
-        <p className="sidebar-note">Prototype: data stays in this browser.</p>
+        <p className="sidebar-note">Prototype: records and login stay in this browser.</p>
         <div className="sidebar-user">
           <span className={`avatar-sm role-${user.role}`} aria-hidden="true">
             {getInitials(user.name)}

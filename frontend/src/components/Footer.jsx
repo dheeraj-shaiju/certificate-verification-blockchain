@@ -5,8 +5,8 @@ export default function Footer({ compact = false }) {
   return (
     <footer className={compact ? 'footer footer-compact' : 'footer'}>
       <p>
-        Prototype v0.6. Records, PDFs and login run only in this browser. The blockchain, IPFS
-        storage and secure login are planned for the next phase.{' '}
+        Prototype v0.7. PDFs are stored on IPFS when the backend is running; records and login are
+        kept in this browser. The blockchain and secure login are planned for the next phase.{' '}
         <Link to="/about">About the project</Link>
       </p>
       {!compact && (

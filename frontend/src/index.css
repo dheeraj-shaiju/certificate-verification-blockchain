@@ -2048,3 +2048,78 @@ select.input {
     display: none;
   }
 }
+
+/* ---------- 17. Backend connection (IPFS) ---------- */
+.backend-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.backend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--muted);
+  flex-shrink: 0;
+}
+
+.backend-online {
+  color: var(--mint);
+  border-color: rgba(94, 234, 212, 0.4);
+}
+
+.backend-online .backend-dot {
+  background: var(--mint);
+}
+
+.backend-offline {
+  color: var(--warning);
+  border-color: rgba(252, 211, 77, 0.4);
+}
+
+.backend-offline .backend-dot {
+  background: var(--warning);
+}
+
+.tag-ipfs {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--mint);
+  border: 1px solid rgba(94, 234, 212, 0.45);
+  vertical-align: middle;
+}
+
+.ipfs-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.ipfs-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.toast-warning {
+  border-left-color: var(--warning);
+}
+
+.toast-warning > svg {
+  color: var(--warning);
+}

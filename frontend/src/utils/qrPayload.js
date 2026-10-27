@@ -15,6 +15,7 @@ export function buildQrPayload(record) {
     `Graduation year: ${record.graduationYear}`,
     `Issuer: ${record.institutionName}`,
     `PDF SHA-256: ${record.fileHash || 'not available'}`,
+    `IPFS CID: ${record.ipfsCID || 'not uploaded'}`,
     'Status: not yet on blockchain',
   ].join('\n');
 }
