@@ -91,7 +91,7 @@ export function createCertificatePdf({
   // Sample notice
   doc.setFontSize(8);
   doc.setTextColor(148, 163, 184);
-  doc.text('SAMPLE CERTIFICATE - generated for prototype demonstration only', centerX, 193, {
+  doc.text('SAMPLE CERTIFICATE', centerX, 193, {
     align: 'center',
   });
 

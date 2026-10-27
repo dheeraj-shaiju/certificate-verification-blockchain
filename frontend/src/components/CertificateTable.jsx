@@ -80,6 +80,11 @@ export default function CertificateTable({ records, onView, onShowQr, onDelete }
                 <tr key={record.certificateId}>
                   <td data-label="Certificate ID">
                     <span className="code">{record.certificateId}</span>
+                    {record.ipfsCID && (
+                      <span className="tag-ipfs" title={`On IPFS: ${record.ipfsCID}`}>
+                        IPFS
+                      </span>
+                    )}
                   </td>
                   <td data-label="Student">
                     <strong>{record.studentName}</strong>

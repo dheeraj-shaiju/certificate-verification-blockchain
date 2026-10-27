@@ -1,13 +1,13 @@
-// The hexagon mark used in the navbar (same shape as the review slides).
-export default function Logo({ size = 34 }) {
+// The app mark: a blue square with a check (verified).
+export default function Logo({ size = 32 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden="true">
-      <polygon points="32,3 58,17.5 58,46.5 32,61 6,46.5 6,17.5" fill="var(--cyan)" />
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" rx="7" fill="var(--cyan)" />
       <path
-        d="M21 33l7 7 15-16"
+        d="M10 16.5l4 4 8-9"
         fill="none"
-        stroke="var(--ink)"
-        strokeWidth="6"
+        stroke="#ffffff"
+        strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

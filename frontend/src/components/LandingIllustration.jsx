@@ -17,22 +17,14 @@ export default function LandingIllustration() {
 
       <defs>
         <clipPath id="landing-art-frame">
-          <rect x="10" y="30" width="500" height="400" rx="24" />
+          <rect x="10" y="30" width="500" height="400" rx="16" />
         </clipPath>
       </defs>
-      <rect
-        x="10"
-        y="30"
-        width="500"
-        height="400"
-        rx="24"
-        fill="var(--panel)"
-        stroke="var(--line)"
-      />
+      <rect x="10" y="30" width="500" height="400" rx="16" fill="var(--tint)" />
 
       <g clipPath="url(#landing-art-frame)">
         {/* Blockchain nodes in the background */}
-        <g stroke="var(--line)" strokeWidth="2">
+        <g stroke="#c3cee3" strokeWidth="2">
           <line x1="54" y1="70" x2="118" y2="34" />
           <line x1="118" y1="34" x2="140" y2="118" />
           <line x1="54" y1="70" x2="140" y2="118" />
@@ -52,7 +44,15 @@ export default function LandingIllustration() {
 
         {/* The certificate, slightly tilted */}
         <g transform="rotate(-5 310 220)">
-          <rect x="180" y="60" width="260" height="320" rx="10" fill="var(--paper)" />
+          <rect
+            x="180"
+            y="60"
+            width="260"
+            height="320"
+            rx="10"
+            fill="var(--paper)"
+            stroke="#d6dde8"
+          />
           <rect
             x="192"
             y="72"
@@ -78,7 +78,7 @@ export default function LandingIllustration() {
         <path
           d="M441 92l8 8 15-16"
           fill="none"
-          stroke="var(--ink)"
+          stroke="#ffffff"
           strokeWidth="5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -94,13 +94,13 @@ export default function LandingIllustration() {
           strokeWidth="16"
           strokeLinecap="round"
         />
-        <circle cx="372" cy="282" r="50" fill="#0f1a44" stroke="var(--text)" strokeWidth="9" />
-        <circle cx="372" cy="282" r="44" fill="rgba(34, 211, 238, 0.12)" />
+        <circle cx="372" cy="282" r="50" fill="#ffffff" stroke="#1c2430" strokeWidth="9" />
+        <circle cx="372" cy="282" r="44" fill="rgba(29, 78, 216, 0.08)" />
         <polygon points="372,250 400,266 400,298 372,314 344,298 344,266" fill="var(--cyan)" />
         <path
           d="M359 283l9 9 18-19"
           fill="none"
-          stroke="var(--ink)"
+          stroke="#ffffff"
           strokeWidth="6"
           strokeLinecap="round"
           strokeLinejoin="round"

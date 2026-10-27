@@ -39,5 +39,6 @@ export const MAX_PDF_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
 export const MIN_GRADUATION_YEAR = 2000;
 export const MAX_GRADUATION_YEAR = new Date().getFullYear() + 5;
 
-// Shown on every record so nobody mistakes the prototype for the final system.
-export const PROTOTYPE_STATUS = 'Stored in browser (not on blockchain yet)';
+// Where a certificate's PDF is kept.
+export const PROTOTYPE_STATUS = 'Saved in this browser';
+export const IPFS_STATUS = 'Stored on IPFS';

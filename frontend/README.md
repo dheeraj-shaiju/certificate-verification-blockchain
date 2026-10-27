@@ -1,6 +1,6 @@
 # CertVerify – Certificate Verification System Using Blockchain
 
-Phase I **frontend prototype**, version 0.6 (multi-college web app with login) (CSD415, Project Group 6, GEC Thrissur).
+Phase I **frontend prototype**, version 0.9 (standard design, connected to the IPFS backend) (CSD415, Project Group 6, GEC Thrissur).
 
 A common platform for any college. Each college’s admin issues degree
 certificates (details + PDF) in that college’s name, and students view them,
@@ -64,6 +64,22 @@ If you ever create a fresh Vite project yourself, these are the extra packages i
 npm install react-router-dom qrcode.react idb-keyval jspdf lucide-react
 ```
 
+## Connecting to the backend (IPFS)
+
+When **Issue certificate** is clicked, the PDF is sent to the backend in
+`../backend` (`POST http://localhost:5000/api/certificates/issue`, file field
+`certificatePDF`, plus `studentRegNo`). The backend hashes it, stores it on IPFS
+through Pinata and returns `{ sha256Fingerprint, ipfsCID }`. The certificate then
+shows its CID with an **Open on IPFS** link.
+
+- Start the backend first: `cd ../backend`, then `npm start` (needs `backend/.env`).
+- The Issue page shows **Backend connected** or **Backend offline**.
+- If the backend is off, certificates are still issued and kept in the browser.
+- To use a different backend address, create `frontend/.env` with
+  `VITE_API_URL=http://your-server:5000` and restart `npm run dev`.
+
+The code for this is in `src/services/api.js`.
+
 ## 3. Dependencies
 
 | Package | Why it is used |
@@ -122,6 +138,7 @@ cert-verify-frontend/
     ├── hooks/usePdfUrl.js           Loads a stored PDF for display
     ├── services/
     │   ├── storage.js               localStorage + IndexedDB (replace with API calls later)
+    │   ├── api.js                   Calls the backend (IPFS upload)
     │   ├── auth.js                  Demo login check (replace with the login API later)
     │   ├── certificatePdf.js        Builds sample certificate PDFs
     │   └── sampleData.js            The demo students

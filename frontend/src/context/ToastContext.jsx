@@ -5,9 +5,10 @@
  *   const showToast = useToast();
  *   showToast('Certificate issued.');            // green
  *   showToast('Could not save the file.', 'error'); // red
+ *   showToast('Saved in the browser only.', 'warning'); // yellow
  */
 import { createContext, useCallback, useContext, useState } from 'react';
-import { CheckCircle2, AlertCircle, X } from 'lucide-react';
+import { CheckCircle2, AlertCircle, AlertTriangle, X } from 'lucide-react';
 
 const ToastContext = createContext(() => {});
 
@@ -22,7 +23,7 @@ export function ToastProvider({ children }) {
     (message, type = 'success') => {
       const id = `${Date.now()}-${Math.random()}`;
       setToasts((current) => [...current, { id, message, type }]);
-      setTimeout(() => removeToast(id), 4000);
+      setTimeout(() => removeToast(id), type === 'success' ? 4000 : 7000);
     },
     [removeToast],
   );
@@ -33,7 +34,9 @@ export function ToastProvider({ children }) {
       <div className="toast-stack" role="status" aria-live="polite">
         {toasts.map((toast) => (
           <div key={toast.id} className={`toast toast-${toast.type}`}>
-            {toast.type === 'error' ? <AlertCircle size={18} /> : <CheckCircle2 size={18} />}
+            {toast.type === 'error' && <AlertCircle size={18} />}
+            {toast.type === 'warning' && <AlertTriangle size={18} />}
+            {toast.type === 'success' && <CheckCircle2 size={18} />}
             <span>{toast.message}</span>
             <button
               type="button"

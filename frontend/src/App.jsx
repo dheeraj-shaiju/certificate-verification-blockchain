@@ -4,7 +4,7 @@
  * Public pages (top bar layout):
  *   /             -> LandingPage (introduction + login)
  *   /login        -> LandingPage (same page; protected pages send visitors here)
- *   /about        -> AboutPage (how it works + prototype status)
+ *   /about        -> AboutPage (what CertVerify does)
  *
  * Signed-in pages (sidebar layout):
  *   /admin        -> AdminDashboard        (admin only)

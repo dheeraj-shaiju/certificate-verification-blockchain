@@ -22,7 +22,7 @@ export default function LandingPage() {
   return (
     <div className="landing">
       <div className="landing-intro">
-        <p className="landing-kicker">For colleges, students and employers</p>
+        <p className="landing-kicker">For colleges and students</p>
         <h1 className="landing-title">Certificate Verification System Using Blockchain</h1>
         <p className="landing-lede">
           One place where any college issues degree certificates with a unique ID and a digital
@@ -33,7 +33,7 @@ export default function LandingPage() {
         <LandingIllustration />
 
         <Link to="/about" className="landing-link">
-          How the system works and what this prototype covers
+          Learn how CertVerify works
         </Link>
       </div>
 

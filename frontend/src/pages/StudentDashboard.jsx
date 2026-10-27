@@ -127,10 +127,7 @@ export default function StudentDashboard() {
       {!isStudent && !student && (
         <section className="panel lookup-panel">
           <h2 className="panel-title">Find your certificates</h2>
-          <p className="panel-intro">
-            Prototype access: enter a student ID. Password login arrives with the backend in Phase
-            II.
-          </p>
+          <p className="panel-intro">Enter a student ID to open their dashboard.</p>
           <form className="lookup-form" onSubmit={handleLookup} noValidate>
             <div className="form-field">
               <label htmlFor="lookup-id">Student ID</label>

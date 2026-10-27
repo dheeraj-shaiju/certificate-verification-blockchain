@@ -1,5 +1,7 @@
 // A labelled list of every field in a certificate record.
+import { ExternalLink } from 'lucide-react';
 import CopyButton from './CopyButton';
+import { ipfsUrl } from '../services/api';
 import { formatBytes, formatDateTime } from '../utils/formatters';
 
 export default function CertificateDetails({ record }) {
@@ -47,9 +49,33 @@ export default function CertificateDetails({ record }) {
         <dd className="code hash">{record.fileHash || 'Not available in this browser'}</dd>
       </div>
       <div className="details-wide">
+        <dt>IPFS CID</dt>
+        <dd>
+          {record.ipfsCID ? (
+            <span className="ipfs-row">
+              <span className="code hash">{record.ipfsCID}</span>
+              <CopyButton text={record.ipfsCID} label="Copy IPFS CID" />
+              <a
+                href={ipfsUrl(record.ipfsCID)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ipfs-link"
+              >
+                <ExternalLink size={14} aria-hidden="true" />
+                Open on IPFS
+              </a>
+            </span>
+          ) : (
+            <span className="field-hint">Not on IPFS (saved in this browser only)</span>
+          )}
+        </dd>
+      </div>
+      <div className="details-wide">
         <dt>Status</dt>
         <dd>
-          <span className="status-pill">{record.status}</span>
+          <span className={record.ipfsCID ? 'status-pill status-ok' : 'status-pill'}>
+            {record.ipfsCID ? 'Stored on IPFS' : 'Saved in this browser'}
+          </span>
         </dd>
       </div>
     </dl>

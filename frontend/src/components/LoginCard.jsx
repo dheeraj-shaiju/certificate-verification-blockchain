@@ -1,6 +1,6 @@
 /**
  * The login box (Admin / Student switch + form + demo accounts).
- * Shown on the landing page. The demo accounts are listed so reviewers can try both roles.
+ * Shown on the landing page, with demo accounts so both roles can be tried.
  */
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -154,7 +154,7 @@ export default function LoginCard() {
       <div className="demo-accounts">
         <h3>
           <Info size={16} aria-hidden="true" />
-          Demo accounts for the review
+          Demo accounts
         </h3>
 
         {DEMO_ADMINS.map((account) => (
@@ -194,10 +194,8 @@ export default function LoginCard() {
         )}
 
         <p className="field-hint">
-          Each college admin sees only their own college’s certificates. Any student with a
-          certificate can log in with their ID and{' '}
-          <span className="code">{DEMO_STUDENT_PASSWORD}</span>. This demo login runs in the browser
-          and is not secure; real login comes with the backend.
+          Students log in with their student ID. Demo password:{' '}
+          <span className="code">{DEMO_STUDENT_PASSWORD}</span>
         </p>
       </div>
     </section>
